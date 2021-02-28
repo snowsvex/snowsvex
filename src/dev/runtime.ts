@@ -40,7 +40,7 @@ async function getDevRuntimeFile() {
 
 type PathString = `${string}.${'svelte' | 'svx'}`
 function isPathString(s: string): s is PathString {
-  return s.endsWith('.svekte') || s.endsWith('.svx')
+  return s.endsWith('.svelte') || s.endsWith('.svx')
 }
 
 function getPrettyPath(path: PathString): { extension?: string; filename?: string } {
@@ -92,14 +92,15 @@ function genHtml(paths: Paths) {
     ${paths.map(
       ({ dir, list }) => ` 
       if (pathname.includes('${dir}')) {
-        ${list.map(
-          ({ filename, extension }) => `
+        ${list
+          .map(
+            ({ filename, extension }) => `
           if (pathname.includes('${filename}')) {
             return \`.\${pathname}.${extension}.js\`
           }
-        `,
-          ''
-        )}
+        `
+          )
+          .join('')}
       }
     `
     )}
