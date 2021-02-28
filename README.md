@@ -6,14 +6,6 @@ Compile Svelte and svelte-scented markdown _(aka MDSvex)_ into static pages usin
 
 ## Installation
 
-### Create Command
-
-```sh
-npx create @snowsvex/snowsvex [PROJECT_NAME]
-```
-
-### Manually Installation
-
 📦 Install with your favourite package manager
 
 ```sh
@@ -39,8 +31,8 @@ You can add more directories to watch by adding them to a `snowsvex.config.js` f
 
 ```js
 module.exports = {
-  pagesDirs: ["pages", "articles", "foo", "superfoo"],
-};
+  pagesDirs: ['pages', 'articles', 'foo', 'superfoo']
+}
 ```
 
 `pagesDirs` expects a `string[]` of directory names to look in for files to generate static pages from.
