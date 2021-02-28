@@ -5,7 +5,9 @@
   "author": "Conor Sinclair",
   "license": "MIT",
   "dependencies": {
-    "commander": "^7.1.0"
+    "commander": "^7.1.0",
+    "fs": "^0.0.1-security",
+    "snowpack": "^3.0.13"
   },
   "main": "./lib/index.js",
   "bin": {
