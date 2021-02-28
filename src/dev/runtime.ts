@@ -2,7 +2,7 @@ import fs from 'fs/promises'
 import { SnowsvexConfig } from '../config'
 
 type DevRuntimeProps = {
-  pagesDirs: SnowsvexConfig['pageDirs']
+  pagesDirs: SnowsvexConfig['pagesDirs']
 }
 export async function createDevRuntime({ pagesDirs }: DevRuntimeProps): Promise<string | null> {
   const paths: Paths = (

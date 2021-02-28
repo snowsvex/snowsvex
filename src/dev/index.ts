@@ -12,7 +12,7 @@ export default program
 async function dev() {
   console.log('Snowsvex time!')
   const config = await loadSnowsvexConfig()
-  const pagesDirs = config?.pageDirs || ['pages']
+  const pagesDirs = config?.pagesDirs || ['pages']
   const devRuntimeFile = await createDevRuntime({ pagesDirs })
   if (!devRuntimeFile) {
     throw new Error('Runtime file was not created!')

@@ -17,7 +17,7 @@ async function buildAssets() {
   const snowpackConfig = await loadSnowpackConfig()
   const { result } = await build({ config: snowpackConfig, lockfile: null })
 
-  const pagesDirs = snowsvexConfig?.pageDirs || ['pages']
+  const pagesDirs = snowsvexConfig?.pagesDirs || ['pages']
 
   await Promise.all(
     pagesDirs.map(async dir => {
