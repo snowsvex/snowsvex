@@ -12,7 +12,8 @@
     "snowsvex": "./lib/index.js"
   },
   "scripts": {
-    "build": "tsc --build src"
+    "build": "tsc --build src",
+    "global": "npm i -g && snowsvex"
   },
   "keywords": [
     "static",
