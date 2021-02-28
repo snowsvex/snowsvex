@@ -12,7 +12,7 @@
     "snowsvex": "./lib/index.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc --build src"
   },
   "keywords": [
     "static",
@@ -31,7 +31,11 @@
   },
   "homepage": "https://github.com/snowsvex/snowsvex#readme",
   "devDependencies": {
+    "@types/figlet": "^1.2.1",
     "@types/node": "^14.14.31",
+    "chalk": "^4.1.0",
+    "clear": "^0.1.0",
+    "figlet": "^1.5.0",
     "typescript": "^4.2.2"
   }
 }
