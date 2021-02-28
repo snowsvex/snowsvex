@@ -1,10 +1,11 @@
 {
   "name": "@snowsvex/snowsvex",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Static site generator ",
   "author": "Conor Sinclair",
   "license": "MIT",
   "dependencies": {
+    "@snowsvex/snowsvex-plugin": "^0.1.2",
     "chalk": "^4.1.0",
     "clear": "^0.1.0",
     "commander": "^7.1.0",
