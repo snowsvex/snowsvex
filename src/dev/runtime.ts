@@ -27,11 +27,11 @@ export async function createDevRuntime({ pagesDirs }: DevRuntimeProps): Promise<
 }
 
 async function getDevRuntimeFile() {
-  const js = await fs.readFile('src/dev-runtime.js', 'utf-8')
+  const js = await fs.readFile('src/dev-runtime.js', 'utf-8').catch(console.log)
   if (js) {
     return js
   }
-  const ts = await fs.readFile('src/dev-runtime.ts', 'utf-8')
+  const ts = await fs.readFile('src/dev-runtime.ts', 'utf-8').catch(console.log)
   if (ts) {
     return ts
   }
