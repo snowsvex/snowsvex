@@ -1,6 +1,6 @@
-# Snowsvex Plugin
+# Snowsvex
 
-> Snowpack plugin for building svex-y static sites with svelte
+> Build svex-y static sites with svelte
 
 Compile Svelte and svelte-scented markdown _(aka MDSvex)_ into static pages using Snowpack.
 
