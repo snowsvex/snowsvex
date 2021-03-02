@@ -1,6 +1,6 @@
 import { Command } from 'commander'
 import { build } from 'snowpack'
-import fs from 'fs/promises'
+import { readdir } from 'fs/promises'
 import { moveToRoot, renameFiles } from './utils'
 import { loadSnowsvexConfig, loadSnowpackConfig } from '../config'
 
@@ -16,15 +16,16 @@ async function buildAssets() {
   const snowsvexConfig = await loadSnowsvexConfig()
   const snowpackConfig = await loadSnowpackConfig()
   const { result } = await build({ config: snowpackConfig, lockfile: null })
-
   const pagesDirs = snowsvexConfig?.pagesDirs || ['pages']
+
+  console.log({ pagesDirs })
 
   await Promise.all(
     pagesDirs.map(async dir => {
       await renameFiles(dir)
       if (dir === 'pages') {
         // move all of them to root of the build
-        const files = await fs.readdir(`${BUILD_ROOT}/pages`)
+        const files = await readdir(`${BUILD_ROOT}/pages`)
         const html = files.filter(f => f.includes('.html'))
         await moveToRoot(html)
       }
@@ -35,3 +36,5 @@ async function buildAssets() {
   console.log('🔥 Successful Snowsvex!')
   process.exit(0)
 }
+
+buildAssets()

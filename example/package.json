@@ -1,0 +1,17 @@
+{
+  "name": "snowsvex-example",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "snowsvex dev",
+    "build": "snowsvex build"
+  },
+  "author": "Conor Sinclair",
+  "dependencies": {
+    "@snowsvex/snowsvex": "file:.."
+  },
+  "devDependencies": {
+    "@snowsvex/snowsvex-plugin": "^0.1.2"
+  }
+}

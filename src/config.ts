@@ -1,4 +1,4 @@
-import { createConfiguration, loadConfiguration, SnowpackConfig } from 'snowpack'
+import { createConfiguration, SnowpackConfig } from 'snowpack'
 
 export interface SnowsvexConfig {
   pagesDirs: string[]
@@ -6,41 +6,41 @@ export interface SnowsvexConfig {
 
 export async function loadSnowsvexConfig(): Promise<SnowsvexConfig | null> {
   try {
-    const raw = //@ts-ignore
-    (await import('../snowsvex.config.js')) as SnowsvexConfig
-    return raw
+    const raw = await import(`${process.cwd()}/snowsvex.config.js`)
+    return raw as SnowsvexConfig
   } catch (err) {
     console.log('No snowsvex config found')
   }
-  // const snowpackConfig = await loadConfiguration()
-  // const snowsvexPlugin = snowpackConfig.plugins.find(
-  //   ({ name }) => name === '@snowsvex/snowsvex-plugin'
-  // )
-  // if (!snowsvexPlugin) {
-  //   throw new Error(
-  //     'The snowsvex plugin was not found! Install it: `yarn add -D @snowsvex/snowsvex-plugin`'
-  //   )
-  // }
-  // const opts = snowsvexPlugin?.config
-  // console.log({ opts })
+  const snowpackConfig = await loadSnowpackConfig()
 
-  // .find(plugin => plugin.name === '@snowsvex/snowsvex-plugin')
-  // ?.config
-  return null
+  //@ts-ignore
+  const snowsvexPlugin = snowpackConfig.raw.plugins.find(plugin => {
+    if (Array.isArray(plugin) && plugin[0].includes('snowsvex-plugin')) {
+      return true
+    }
+    return false
+  })
+  if (snowsvexPlugin) {
+    return snowsvexPlugin[1]
+  }
+  return { pagesDirs: ['pages'] }
 }
 
-export async function loadSnowpackConfig(): Promise<SnowpackConfig> {
-  const snowpackConfig = await loadConfiguration()
-  if (snowpackConfig) {
-    return snowpackConfig
-  }
-  const newConfig = await createConfiguration({
+export async function loadSnowpackConfig(): Promise<SnowpackConfig & { raw: unknown }> {
+  const defaultConfig = {
     mount: {
       public: { url: '/', static: true },
       src: { url: '/' }
     },
-    plugins: ['@snowpack/plugin-dotenv', '@snowsvex/snowsvex-plugin'],
-    routes: [{ match: 'routes', src: '.*', dest: '/index.html' }]
-  })
-  return newConfig
+    routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],
+    plugins: ['@snowsvex/snowsvex-plugin']
+  }
+  try {
+    const snowpackConfig = (await import(`${process.cwd()}/snowpack.config.js`)) || defaultConfig
+    const newConfig = createConfiguration(snowpackConfig)
+    return { ...newConfig, raw: snowpackConfig }
+  } catch (e) {
+    //@ts-ignore
+    return { ...createConfiguration(defaultConfig), raw: defaultConfig }
+  }
 }

@@ -27,7 +27,11 @@ pnpm i -D @snowsvex/snowsvex
 
 By default any `.svelte` or `.svx` files in your `src/pages` directory will generate html files.
 
-You can add more directories to watch by adding them to a `snowsvex.config.js` file.
+> Specific config is broken currently. Watch this space!
+
+<strike>You can add more directories to watch by adding them to a `snowsvex.config.js` file.</strike>
+
+> Not currently... Just put it in the snowpack config for now
 
 ```js
 module.exports = {

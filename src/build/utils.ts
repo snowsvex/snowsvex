@@ -1,4 +1,4 @@
-import fs from 'fs/promises'
+import { readdir, rename } from 'fs/promises'
 
 const BUILD_ROOT = './build'
 
@@ -8,10 +8,11 @@ function stripExts(file: string) {
 }
 
 export async function renameFiles(dir: string) {
-  const files = await fs.readdir(`${BUILD_ROOT}/${dir}`)
+  const files = await readdir(`${BUILD_ROOT}/${dir}`)
+  console.log({ files })
   await Promise.all(
     files.map(async file => {
-      await fs.rename(`${BUILD_ROOT}/${dir}/${file}`, `${BUILD_ROOT}/${dir}/${stripExts(file)}`)
+      await rename(`${BUILD_ROOT}/${dir}/${file}`, `${BUILD_ROOT}/${dir}/${stripExts(file)}`)
     })
   )
 }
@@ -19,7 +20,7 @@ export async function renameFiles(dir: string) {
 export async function moveToRoot(files: string[]) {
   await Promise.all(
     files.map(async file => {
-      await fs.rename(`${BUILD_ROOT}/pages/${file}`, `${BUILD_ROOT}/${stripExts(file)}`)
+      await rename(`${BUILD_ROOT}/pages/${file}`, `${BUILD_ROOT}/${stripExts(file)}`)
     })
   )
 }

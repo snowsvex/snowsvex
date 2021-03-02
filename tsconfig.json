@@ -3,6 +3,7 @@
     "rootDir": ".",
     "outDir": ".",
     "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "composite": true
   },
   "files": ["package.json"]
