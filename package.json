@@ -1,6 +1,6 @@
 {
   "name": "@snowsvex/snowsvex",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Static site generator ",
   "author": "Conor Sinclair",
   "license": "MIT",
@@ -19,6 +19,7 @@
   },
   "scripts": {
     "build": "tsc --build src",
+    "prepublish": "npm run build",
     "global": "npm i -g && snowsvex"
   },
   "keywords": [
