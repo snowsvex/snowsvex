@@ -286,7 +286,7 @@ class SvelteComponent {
 }
 
 function dispatch_dev(type, detail) {
-    document.dispatchEvent(custom_event(type, Object.assign({ version: '3.34.0' }, detail)));
+    document.dispatchEvent(custom_event(type, Object.assign({ version: '3.35.0' }, detail)));
 }
 function append_dev(target, node) {
     dispatch_dev('SvelteDOMInsert', { target, node });

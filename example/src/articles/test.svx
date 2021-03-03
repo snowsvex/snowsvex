@@ -1,5 +1,7 @@
 ---
 title: 'Awesome title'
+x: 1
+y: 20
 ---
 
 # Amazzzing
