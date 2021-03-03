@@ -2,18 +2,18 @@
 # yarn lockfile v1
 
 
-"@snowsvex/snowsvex-plugin@^0.1.2":
-  "integrity" "sha512-vWq3zWIh6v9LqV5tcb1Zj4YwlwOlvo9PI49deA5a8ZutwFBb4xvJh3za1HcZGSMyc/jEUXJP/wUnjDw9a0n2WQ=="
-  "resolved" "https://registry.npmjs.org/@snowsvex/snowsvex-plugin/-/snowsvex-plugin-0.1.3.tgz"
-  "version" "0.1.3"
+"@snowsvex/snowsvex-plugin@^0.1.5":
+  "integrity" "sha512-tn7TDdfoorCbRIUxaU+o2lbUFW8E+ounDa7VJZkBqSCHy5KuJsjhLj0w8hSkxxwpPeMGVdZBD+zV2T4NV1/SFA=="
+  "resolved" "https://registry.npmjs.org/@snowsvex/snowsvex-plugin/-/snowsvex-plugin-0.1.5.tgz"
+  "version" "0.1.5"
   dependencies:
     "js-yaml" "^4.0.0"
 
 "@snowsvex/snowsvex@file:..":
   "resolved" "file:.."
-  "version" "0.1.1"
+  "version" "0.1.3"
   dependencies:
-    "@snowsvex/snowsvex-plugin" "^0.1.3"
+    "@snowsvex/snowsvex-plugin" "^0.1.5"
     "chalk" "^4.1.0"
     "clear" "^0.1.0"
     "commander" "^7.1.0"

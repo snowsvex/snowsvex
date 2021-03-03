@@ -12,6 +12,6 @@
     "@snowsvex/snowsvex": "file:.."
   },
   "devDependencies": {
-    "@snowsvex/snowsvex-plugin": "^0.1.2"
+    "@snowsvex/snowsvex-plugin": "^0.1.5"
   }
 }
