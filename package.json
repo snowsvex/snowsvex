@@ -1,6 +1,6 @@
 {
   "name": "@snowsvex/snowsvex",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "The Svexiest static site generator in town",
   "author": "Conor Sinclair",
   "license": "MIT",
@@ -9,9 +9,12 @@
     "chalk": "^4.1.0",
     "clear": "^0.1.0",
     "commander": "^7.1.0",
+    "cosmiconfig": "^7.0.0",
     "figlet": "^1.5.0",
-    "fs": "^0.0.1-security",
-    "snowpack": "^3.0.13"
+    "mdsvex": "^0.8.9",
+    "snowpack": "^3.0.13",
+    "svelte": "^3.35.0",
+    "unified": "^9.2.1"
   },
   "main": "./lib/index.js",
   "bin": {

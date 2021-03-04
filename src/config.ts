@@ -1,32 +1,26 @@
 import { createConfiguration, SnowpackConfig } from 'snowpack'
+import { cosmiconfig } from 'cosmiconfig'
 
 export interface SnowsvexConfig {
   pagesDirs: string[]
 }
 
 export async function loadSnowsvexConfig(): Promise<SnowsvexConfig | null> {
-  try {
-    const raw = await import(`${process.cwd()}/snowsvex.config.js`)
-    return raw as SnowsvexConfig
-  } catch (err) {
-    console.log('No snowsvex config found')
+  const config = await getConfig('snowsvex')
+  if (config) {
+    return config
   }
-  const snowpackConfig = await loadSnowpackConfig()
-
-  //@ts-ignore
-  const snowsvexPlugin = snowpackConfig.raw.plugins.find(plugin => {
-    if (Array.isArray(plugin) && plugin[0].includes('snowsvex-plugin')) {
-      return true
-    }
-    return false
-  })
+  const snowpackConfig = await getConfig('snowpack')
+  const snowsvexPlugin = snowpackConfig.plugins.find(
+    plugin => Array.isArray(plugin) && plugin[0].includes('snowsvex-plugin')
+  )
   if (snowsvexPlugin) {
     return snowsvexPlugin[1]
   }
   return { pagesDirs: ['pages'] }
 }
 
-export async function loadSnowpackConfig(): Promise<SnowpackConfig & { raw: unknown }> {
+export async function loadSnowpackConfig(): Promise<SnowpackConfig> {
   const defaultConfig = {
     mount: {
       public: { url: '/', static: true },
@@ -36,11 +30,23 @@ export async function loadSnowpackConfig(): Promise<SnowpackConfig & { raw: unkn
     plugins: ['@snowsvex/snowsvex-plugin']
   }
   try {
-    const snowpackConfig = (await import(`${process.cwd()}/snowpack.config.js`)) || defaultConfig
-    const newConfig = createConfiguration(snowpackConfig)
-    return { ...newConfig, raw: snowpackConfig }
+    const config = await getConfig('snowpack')
+    return createConfiguration(config)
   } catch (e) {
-    //@ts-ignore
-    return { ...createConfiguration(defaultConfig), raw: defaultConfig }
+    console.log(e)
   }
+  //@ts-ignore
+  return createConfiguration(defaultConfig)
+}
+
+async function getConfig(name: 'snowpack' | 'snowsvex') {
+  const explorer = cosmiconfig(name)
+  const file = `${name}.config.js`
+  const config = await explorer.load(file)
+  if (config?.config && !config.isEmpty) {
+    console.log(`found ${name} config `, config)
+    return config.config
+  }
+  console.log(`no ${name} config found`)
+  return null
 }

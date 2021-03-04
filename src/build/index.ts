@@ -15,6 +15,7 @@ async function buildAssets() {
   const { result } = await build({ config: snowpackConfig, lockfile: null })
   const pagesDirs = snowsvexConfig?.pagesDirs || ['pages']
 
+  console.log({ pagesDirs })
   await Promise.all(pagesDirs.map(prerender))
 
   console.log(`🕶️  Wrote ${Object.keys(result).length} files 🕶️`)

@@ -157,8 +157,8 @@
         "affectsGlobalScope": true
       },
       "./package.json": {
-        "version": "27e1e983f5c9cc644c42c0e91c3152de1c85fa7c0407f3d1dca2ff924eabb14b",
-        "signature": "feece00f7ca6a8c0a58ca59e7297a585c53370c528432d54bd027d25bdf051c8",
+        "version": "eb6318996f898301d041b4ea641636b6cd12325acbe8cbc3e33ff5573e698b4f",
+        "signature": "a9a81ea09f5ac2dfbd455f41436399d85403bbc64f7558e3be64c23074944ae8",
         "affectsGlobalScope": true
       },
       "./node_modules/@types/figlet/index.d.ts": {
@@ -399,6 +399,11 @@
       "./node_modules/@types/node/index.d.ts": {
         "version": "9c4c395e927045b324877acdc4bfb95f128f36bc9f073266a2f0342495075a4f",
         "signature": "9c4c395e927045b324877acdc4bfb95f128f36bc9f073266a2f0342495075a4f",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/parse-json/index.d.ts": {
+        "version": "2b8264b2fefd7367e0f20e2c04eed5d3038831fe00f5efbc110ff0131aab899b",
+        "signature": "2b8264b2fefd7367e0f20e2c04eed5d3038831fe00f5efbc110ff0131aab899b",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/unist/index.d.ts": {
@@ -930,6 +935,7 @@
       "./node_modules/@types/node/wasi.d.ts",
       "./node_modules/@types/node/worker_threads.d.ts",
       "./node_modules/@types/node/zlib.d.ts",
+      "./node_modules/@types/parse-json/index.d.ts",
       "./node_modules/@types/unist/index.d.ts",
       "./node_modules/typescript/lib/lib.d.ts",
       "./node_modules/typescript/lib/lib.dom.d.ts",

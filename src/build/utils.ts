@@ -1,4 +1,5 @@
 import { readdir, rename, readFile, writeFile } from 'fs/promises'
+import { compile } from 'mdsvex'
 import 'svelte/register'
 
 const SRC_ROOT = `${process.cwd()}/src`
@@ -25,10 +26,18 @@ export async function prerender(dir: string) {
     const srcFiles = await readdir(`${SRC_ROOT}/${dir}`)
     const compiled = await Promise.all(
       srcFiles.map(async file => {
+        let html: string | undefined
+        const src = `${SRC_ROOT}/${dir}/${file}`
+        if (file.includes('.svx')) {
+          const output = await compile(src)
+          html = output?.code
+        }
         if (file.includes('.svelte')) {
-          const src = `${SRC_ROOT}/${dir}/${file}`
           const Component = await import(src)
-          const { html } = await Component.default.default.render()
+          const output = await Component.default.default.render()
+          html = output.html
+        }
+        if (html) {
           const destination = dir === 'pages' ? BUILD_ROOT : `${BUILD_ROOT}/${dir}`
           const outpath = `${destination}/${stripExts(file)}.html`
           const current = await readFile(outpath, 'utf-8')
