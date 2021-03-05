@@ -29,7 +29,8 @@ export async function prerender(dir: string) {
         let html: string | undefined
         const src = `${SRC_ROOT}/${dir}/${file}`
         if (file.includes('.svx')) {
-          const output = await compile(src)
+          const srcString = await readFile(src, 'utf-8')
+          const output = await compile(srcString)
           html = output?.code
         }
         if (file.includes('.svelte')) {
