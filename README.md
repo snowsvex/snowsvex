@@ -58,3 +58,4 @@ Need a new directory to watch and generate pages from? Add it to your `snowsvex.
 - [ ] Setup Github action to autodeploy to npm
 - [ ] gif showing build command
 - [ ] fix config file
+- [ ] get dev working tightly

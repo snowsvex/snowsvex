@@ -1,4 +1,10 @@
 function noop() { }
+function assign(tar, src) {
+    // @ts-ignore
+    for (const k in src)
+        tar[k] = src[k];
+    return tar;
+}
 function add_location(element, file, line, column, char) {
     element.__svelte_meta = {
         loc: { file, line, column, char }
@@ -21,6 +27,42 @@ function safe_not_equal(a, b) {
 }
 function is_empty(obj) {
     return Object.keys(obj).length === 0;
+}
+function create_slot(definition, ctx, $$scope, fn) {
+    if (definition) {
+        const slot_ctx = get_slot_context(definition, ctx, $$scope, fn);
+        return definition[0](slot_ctx);
+    }
+}
+function get_slot_context(definition, ctx, $$scope, fn) {
+    return definition[1] && fn
+        ? assign($$scope.ctx.slice(), definition[1](fn(ctx)))
+        : $$scope.ctx;
+}
+function get_slot_changes(definition, $$scope, dirty, fn) {
+    if (definition[2] && fn) {
+        const lets = definition[2](fn(dirty));
+        if ($$scope.dirty === undefined) {
+            return lets;
+        }
+        if (typeof lets === 'object') {
+            const merged = [];
+            const len = Math.max($$scope.dirty.length, lets.length);
+            for (let i = 0; i < len; i += 1) {
+                merged[i] = $$scope.dirty[i] | lets[i];
+            }
+            return merged;
+        }
+        return $$scope.dirty | lets;
+    }
+    return $$scope.dirty;
+}
+function update_slot(slot, slot_definition, ctx, $$scope, dirty, get_slot_changes_fn, get_slot_context_fn) {
+    const slot_changes = get_slot_changes(slot_definition, $$scope, dirty, get_slot_changes_fn);
+    if (slot_changes) {
+        const slot_context = get_slot_context(slot_definition, ctx, $$scope, get_slot_context_fn);
+        slot.p(slot_context, slot_changes);
+    }
 }
 
 function append(target, node) {
@@ -155,10 +197,27 @@ function update($$) {
     }
 }
 const outroing = new Set();
+let outros;
 function transition_in(block, local) {
     if (block && block.i) {
         outroing.delete(block);
         block.i(local);
+    }
+}
+function transition_out(block, local, detach, callback) {
+    if (block && block.o) {
+        if (outroing.has(block))
+            return;
+        outroing.add(block);
+        outros.c.push(() => {
+            outroing.delete(block);
+            if (callback) {
+                if (detach)
+                    block.d(1);
+                callback();
+            }
+        });
+        block.o(local);
     }
 }
 function mount_component(component, target, anchor, customElement) {
@@ -327,4 +386,4 @@ class SvelteComponentDev extends SvelteComponent {
     $inject_state() { }
 }
 
-export { SvelteComponentDev, add_location, append_dev, children, claim_element, claim_space, claim_text, detach_dev, dispatch_dev, element, init, insert_dev, noop, safe_not_equal, space, text, validate_slots };
+export { SvelteComponentDev, add_location, append_dev, children, claim_element, claim_space, claim_text, create_slot, detach_dev, dispatch_dev, element, init, insert_dev, noop, safe_not_equal, space, text, transition_in, transition_out, update_slot, validate_slots };

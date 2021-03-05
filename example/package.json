@@ -9,7 +9,8 @@
   },
   "author": "Conor Sinclair",
   "dependencies": {
-    "@snowsvex/snowsvex": "file:.."
+    "@snowsvex/snowsvex": "file:..",
+    "svelte": "^3.35.0"
   },
   "devDependencies": {
     "@snowsvex/snowsvex-plugin": "^0.1.5"

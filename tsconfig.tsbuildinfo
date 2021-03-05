@@ -157,13 +157,23 @@
         "affectsGlobalScope": true
       },
       "./package.json": {
-        "version": "e9442eba4ef3f2f0717c6709647c75223015fe0c91484b5652958ed258f4f59e",
-        "signature": "a9a81ea09f5ac2dfbd455f41436399d85403bbc64f7558e3be64c23074944ae8",
+        "version": "fef8460aea279941deb3492da98eb9d4b3ca96aef8478ba770d18bcc1667a095",
+        "signature": "3c6c41df01874c9e6b7a5caabd9e6cfe9d08b1e02aa81c44a0cdf19627164bd6",
         "affectsGlobalScope": true
+      },
+      "./node_modules/@types/estree/index.d.ts": {
+        "version": "745a853d60bf782583a58584f59e202cae5c7a898b0c92696442602a3ef17a87",
+        "signature": "745a853d60bf782583a58584f59e202cae5c7a898b0c92696442602a3ef17a87",
+        "affectsGlobalScope": false
       },
       "./node_modules/@types/figlet/index.d.ts": {
         "version": "ce6bde516377b2ba64c5f390598fcaa9eacce36660c32aa13de6170e6cca6cab",
         "signature": "ce6bde516377b2ba64c5f390598fcaa9eacce36660c32aa13de6170e6cca6cab",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/js-yaml/index.d.ts": {
+        "version": "914dc265139513b2a984498b0c969c177493cc7ae436375dbc102307a7f8ab07",
+        "signature": "914dc265139513b2a984498b0c969c177493cc7ae436375dbc102307a7f8ab07",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/node/globals.d.ts": {
@@ -887,7 +897,9 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
+      "./node_modules/@types/estree/index.d.ts",
       "./node_modules/@types/figlet/index.d.ts",
+      "./node_modules/@types/js-yaml/index.d.ts",
       "./node_modules/@types/node/assert.d.ts",
       "./node_modules/@types/node/async_hooks.d.ts",
       "./node_modules/@types/node/base.d.ts",

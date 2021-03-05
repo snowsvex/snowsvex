@@ -1,9 +1,10 @@
 import { readdir, rename, readFile, writeFile } from 'fs/promises'
-import { compile } from 'mdsvex'
+import * as svex from './svex'
+import * as svelte from './svelte'
 import 'svelte/register'
 
-const SRC_ROOT = `${process.cwd()}/src`
-const BUILD_ROOT = `${process.cwd()}/build`
+export const SRC_ROOT = `${process.cwd()}/src`
+export const BUILD_ROOT = `${process.cwd()}/build`
 
 function stripExts(file: string) {
   if (file.includes('.proxy.js')) return file
@@ -29,14 +30,12 @@ export async function prerender(dir: string) {
         let html: string | undefined
         const src = `${SRC_ROOT}/${dir}/${file}`
         if (file.includes('.svx')) {
-          const srcString = await readFile(src, 'utf-8')
-          const output = await compile(srcString)
-          html = output?.code
+          const layout = `${SRC_ROOT}/Layout.svelte` //TODO make this customizable
+          const output = await svex.compile(src, layout)
+          html = output
         }
         if (file.includes('.svelte')) {
-          const Component = await import(src)
-          const output = await Component.default.default.render()
-          html = output.html
+          html = await svelte.render(src)
         }
         if (html) {
           const destination = dir === 'pages' ? BUILD_ROOT : `${BUILD_ROOT}/${dir}`
