@@ -11,16 +11,18 @@
 
 "@snowsvex/snowsvex@file:..":
   "resolved" "file:.."
-  "version" "0.2.0"
+  "version" "0.2.1"
   dependencies:
-    "@snowsvex/snowsvex-plugin" "^0.1.5"
+    "@snowsvex/snowsvex-plugin" "file:../snowsvex-plugin"
     "chalk" "^4.1.0"
     "clear" "^0.1.0"
     "commander" "^7.1.0"
     "cosmiconfig" "^7.0.0"
     "figlet" "^1.5.0"
-    "fs" "^0.0.1-security"
+    "mdsvex" "^0.8.9"
     "snowpack" "^3.0.13"
+    "svelte" "^3.35.0"
+    "unified" "^9.2.1"
 
 "@types/unist@^2.0.0", "@types/unist@^2.0.2", "@types/unist@^2.0.3":
   "integrity" "sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ=="

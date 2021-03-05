@@ -5,7 +5,7 @@
   "author": "Conor Sinclair",
   "license": "MIT",
   "dependencies": {
-    "@snowsvex/snowsvex-plugin": "^0.1.5",
+    "@snowsvex/snowsvex-plugin": "file:../snowsvex-plugin",
     "chalk": "^4.1.0",
     "clear": "^0.1.0",
     "commander": "^7.1.0",
