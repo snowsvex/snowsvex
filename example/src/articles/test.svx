@@ -3,7 +3,12 @@ title: 'Awesome title'
 x: 1
 y: 20
 ---
+<script>
+  import Button from '../components/Button.svelte'
+</script>
 
 # Amazzzing
 
 > Cool stuff
+
+<Button />

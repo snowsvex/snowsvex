@@ -1,3 +1,6 @@
+/**
+ * @type {import('../src/config').SnowsvexConfig}
+ */
 module.exports = {
-  pagesDirs: ['pages', 'articles']
+  directories: ['pages', 'articles']
 }

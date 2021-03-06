@@ -3,7 +3,7 @@ import yaml from 'js-yaml'
 import * as md from 'mdsvex'
 import * as svelte from './svelte'
 import 'svelte/register'
-import { SRC_ROOT } from './utils'
+import { CompiledFile, CompileMap } from '../types'
 
 /**
  *
@@ -15,20 +15,32 @@ export async function getFrontmatter(str: string): Promise<Record<string, unknow
   return frontmatter
 }
 
-/**
- *
- * @param file -- filepath
- * @param layout -- svelte file path for layout
- */
-export async function compile(file: string, layout: string) {
-  const str = await readFile(file, 'utf-8')
+type SvexCompileMap = CompileMap & { layout: string }
+
+export async function compile({
+  src,
+  destination,
+  layout
+}: SvexCompileMap): Promise<CompiledFile | null> {
+  const str = await readFile(src, 'utf-8')
+  const frontmatter = await getFrontmatter(str)
   const mdOut = await md.compile(str, {
     layout
   })
-  if (!mdOut) return ''
-  const tmp = `${SRC_ROOT}/snowsvex-tmp.svelte`
+  if (!mdOut) return null
+  const tmp = `${src}.tmp.svelte`
   await writeFile(tmp, mdOut.code, 'utf-8')
-  const output = await svelte.render(tmp)
+  const output = await svelte.render({ src: tmp, destination })
   await rm(tmp)
-  return output
+  return {
+    ...output,
+    html: {
+      ...output.html,
+      head: {
+        raw: output.html.head?.raw,
+        title: frontmatter.title as string | undefined,
+        description: frontmatter.description as string | undefined
+      }
+    }
+  }
 }

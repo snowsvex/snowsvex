@@ -2,22 +2,15 @@ import { createConfiguration, SnowpackConfig } from 'snowpack'
 import { cosmiconfig } from 'cosmiconfig'
 
 export interface SnowsvexConfig {
-  pagesDirs: string[]
+  directories: string[]
 }
 
-export async function loadSnowsvexConfig(): Promise<SnowsvexConfig | null> {
+export async function loadSnowsvexConfig(): Promise<SnowsvexConfig> {
   const config = await getConfig('snowsvex')
   if (config) {
     return config
   }
-  const snowpackConfig = await getConfig('snowpack')
-  const snowsvexPlugin = snowpackConfig.plugins.find(
-    plugin => Array.isArray(plugin) && plugin[0].includes('snowsvex-plugin')
-  )
-  if (snowsvexPlugin) {
-    return snowsvexPlugin[1]
-  }
-  return { pagesDirs: ['pages'] }
+  return { directories: ['pages'] }
 }
 
 export async function loadSnowpackConfig(): Promise<SnowpackConfig> {
@@ -27,7 +20,6 @@ export async function loadSnowpackConfig(): Promise<SnowpackConfig> {
       src: { url: '/' }
     },
     routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],
-    plugins: ['@snowsvex/snowsvex-plugin']
   }
   try {
     const config = await getConfig('snowpack')

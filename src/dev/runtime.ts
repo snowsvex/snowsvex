@@ -1,12 +1,9 @@
 import fs from 'fs/promises'
-import { SnowsvexConfig } from '../config'
+import { SnowsvexConfig } from '../file/config'
 
-type DevRuntimeProps = {
-  pagesDirs: SnowsvexConfig['pagesDirs']
-}
-export async function createDevRuntime({ pagesDirs }: DevRuntimeProps): Promise<string | null> {
+export async function createDevRuntime({ directories }: SnowsvexConfig): Promise<string | null> {
   const paths: Paths = (
-    await Promise.all(pagesDirs.map(async dir => ({ list: await fs.readdir(`./src/${dir}`), dir })))
+    await Promise.all(directories.map(async dir => ({ list: await fs.readdir(`./src/${dir}`), dir })))
   ).map(({ list, dir }) => ({
     dir,
     list: list.map(s => (isPathString(s) ? getPrettyPath(s) : {}))
@@ -22,7 +19,7 @@ export async function createDevRuntime({ pagesDirs }: DevRuntimeProps): Promise<
       return current
     }
   }
-  await fs.writeFile('src/dev-runtime.js', template)
+  await fs.writeFile('src/dev-runtime.js', template, 'utf-8')
   return template
 }
 

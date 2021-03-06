@@ -1,7 +1,6 @@
 import { Command } from 'commander'
-import { build } from 'snowpack'
-import { prerender } from './utils'
-import { loadSnowsvexConfig, loadSnowpackConfig } from '../config'
+import { loadSnowsvexConfig } from '../file/config'
+import { build } from './build'
 
 const program = new Command()
 
@@ -10,15 +9,13 @@ program.name('build').description('Build static assets!').action(buildAssets)
 export default program
 
 async function buildAssets() {
-  const snowsvexConfig = await loadSnowsvexConfig()
-  const snowpackConfig = await loadSnowpackConfig()
-  const { result } = await build({ config: snowpackConfig, lockfile: null })
-  const pagesDirs = snowsvexConfig?.pagesDirs || ['pages']
-
-  await Promise.all(pagesDirs.map(prerender))
-
-  console.log(`🕶️  Wrote ${Object.keys(result).length} files 🕶️`)
-
-  console.log('🔥 Successful Snowsvex!')
+  try {
+    const snowsvexConfig = await loadSnowsvexConfig()
+    const directories = snowsvexConfig?.directories || ['pages']  
+    await build({ directories })
+    console.log('🔥 Successful Snowsvex!')
+  } catch (e) {
+    console.error(e)
+  } 
   process.exit(0)
 }

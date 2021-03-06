@@ -157,8 +157,8 @@
         "affectsGlobalScope": true
       },
       "./package.json": {
-        "version": "fef8460aea279941deb3492da98eb9d4b3ca96aef8478ba770d18bcc1667a095",
-        "signature": "3c6c41df01874c9e6b7a5caabd9e6cfe9d08b1e02aa81c44a0cdf19627164bd6",
+        "version": "5bc8491294ba69d761da9cd2bcd04978f32902f65cd723a35538934efac19c7a",
+        "signature": "c9515cf3380f9ae1eb2449260a22155855adcd6dabfc957966dcaea2b21e58ed",
         "affectsGlobalScope": true
       },
       "./node_modules/@types/estree/index.d.ts": {
@@ -416,6 +416,16 @@
         "signature": "2b8264b2fefd7367e0f20e2c04eed5d3038831fe00f5efbc110ff0131aab899b",
         "affectsGlobalScope": false
       },
+      "./node_modules/@types/pug/index.d.ts": {
+        "version": "e5c0472e87e18dfe9d2d2d2c3be9f4a5fbec27a74e37bd0e7dd8ab304ea66689",
+        "signature": "e5c0472e87e18dfe9d2d2d2c3be9f4a5fbec27a74e37bd0e7dd8ab304ea66689",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/sass/index.d.ts": {
+        "version": "b1071c8eeb8da55bfac2666551ac923320b0c8a76a292ff55de0190ea59e691c",
+        "signature": "b1071c8eeb8da55bfac2666551ac923320b0c8a76a292ff55de0190ea59e691c",
+        "affectsGlobalScope": false
+      },
       "./node_modules/@types/unist/index.d.ts": {
         "version": "1320ee42b30487cceb6da9f230354fc34826111f76bf12f0ad76c717c12625b0",
         "signature": "1320ee42b30487cceb6da9f230354fc34826111f76bf12f0ad76c717c12625b0",
@@ -661,6 +671,9 @@
       "./node_modules/@types/node/zlib.d.ts": [
         "./node_modules/@types/node/stream.d.ts",
         "./node_modules/@types/node/zlib.d.ts"
+      ],
+      "./node_modules/@types/sass/index.d.ts": [
+        "./node_modules/@types/node/index.d.ts"
       ]
     },
     "exportedModulesMap": {
@@ -894,6 +907,9 @@
       "./node_modules/@types/node/zlib.d.ts": [
         "./node_modules/@types/node/stream.d.ts",
         "./node_modules/@types/node/zlib.d.ts"
+      ],
+      "./node_modules/@types/sass/index.d.ts": [
+        "./node_modules/@types/node/index.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -948,6 +964,8 @@
       "./node_modules/@types/node/worker_threads.d.ts",
       "./node_modules/@types/node/zlib.d.ts",
       "./node_modules/@types/parse-json/index.d.ts",
+      "./node_modules/@types/pug/index.d.ts",
+      "./node_modules/@types/sass/index.d.ts",
       "./node_modules/@types/unist/index.d.ts",
       "./node_modules/typescript/lib/lib.d.ts",
       "./node_modules/typescript/lib/lib.dom.d.ts",

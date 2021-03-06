@@ -1,25 +1,27 @@
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Web page created with Snowsvex!" />
-    <title>undefined</title>
-    <link rel="stylesheet" href="/pages/index.css" />
-  </head>
-  <body>
-    <main><h1>Home Page</h1></main>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <script type="module">
-      import comp from '//pages/index'
-
-      let app = new comp({
-        target: document.body,
-        hydrate: true
-      })
-    </script>
-  </body>
-</html>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <link rel="icon" href="/favicon.ico" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      
+      
+      <link rel="stylesheet" href="/pages/index.css" />
+      
+    </head>
+    <body>
+      <main><h1>Home Page</h1>
+  <button>test</button></main>
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+      <script type="module">
+        import comp from '/pages/index.js'
+  
+        let app = new comp({
+          target: document.body,
+          hydrate: true
+        })
+      </script>
+    </body>
+  </html>
   

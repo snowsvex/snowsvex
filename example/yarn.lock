@@ -11,15 +11,18 @@
 
 "@snowsvex/snowsvex@file:..":
   "resolved" "file:.."
-  "version" "0.2.2"
+  "version" "0.2.3"
   dependencies:
     "@snowsvex/snowsvex-plugin" "file:../snowsvex-plugin"
     "chalk" "^4.1.0"
     "clear" "^0.1.0"
     "commander" "^7.1.0"
     "cosmiconfig" "^7.0.0"
+    "estree-walker" "^3.0.0"
     "figlet" "^1.5.0"
     "js-yaml" "^4.0.0"
+    "locate-character" "^2.0.5"
+    "magic-string" "^0.25.7"
     "mdsvex" "^0.8.9"
     "snowpack" "^3.0.13"
     "svelte" "^3.35.0"
@@ -74,11 +77,6 @@
   "integrity" "sha512-DJH38OiTgXJxFb/EhHrCrY8eGmtdkTtWymHpN9IYN9AF+4jykT0dQArr7wzFejpVbaB0TMIq2+vfNRWr3LXpvw=="
   "resolved" "https://registry.npmjs.org/esbuild/-/esbuild-0.8.54.tgz"
   "version" "0.8.54"
-
-"fsevents@^2.2.0", "fsevents@~2.3.1":
-  "integrity" "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
-  "resolved" "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
-  "version" "2.3.2"
 
 "function-bind@^1.1.1":
   "integrity" "sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A=="
@@ -161,8 +159,6 @@
   "integrity" "sha512-c29LVsqOaLbBHuIbsTxaKENh1N2EQBOHaWv7gkHN4dgRbxSREqDnDbtFJYdpPauS4YCplMSNCABQ6Eeor69bAA=="
   "resolved" "https://registry.npmjs.org/prismjs/-/prismjs-1.23.0.tgz"
   "version" "1.23.0"
-  dependencies:
-    "clipboard" "^2.0.0"
   optionalDependencies:
     "clipboard" "^2.0.0"
 
@@ -178,8 +174,6 @@
   "integrity" "sha512-WiOGAPbXoHu+TOz6hyYUxIksOwsY/21TRWoO593jgYt8mvYafYqQl+axaA8y1z2HFazNUUrsMSjahV2A6/2R9A=="
   "resolved" "https://registry.npmjs.org/rollup/-/rollup-2.40.0.tgz"
   "version" "2.40.0"
-  dependencies:
-    "fsevents" "~2.3.1"
   optionalDependencies:
     "fsevents" "~2.3.1"
 
@@ -195,7 +189,6 @@
   dependencies:
     "default-browser-id" "^2.0.0"
     "esbuild" "^0.8.7"
-    "fsevents" "^2.2.0"
     "open" "^7.0.4"
     "resolve" "^1.20.0"
     "rollup" "^2.34.0"
